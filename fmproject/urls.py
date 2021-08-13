@@ -54,11 +54,3 @@ urlpatterns = [
     path('search/result', search.views.result, name="result"),
 ] #+ static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT) #커뮤니티에서 사진 받는 경우 해당 static추가...?!
 #static을 병렬적으로 더해주는 형태
-
-#summernote
-# from django.conf import settings
-# from django.conf.urls.static import static
-
-# urlpatterns += [path('summernote/', include('django_summernote.urls'))]
-# if settings.DEBUG:
-#     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

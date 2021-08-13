@@ -11,19 +11,7 @@ def home(request):
     context = { 'login_session' : login_session }
     return render(request, 'home.html', context)
 
-# 아래 함수들 다 수정해야함. 목적에 맞게 id를 받는다거나...등등
-def search(request):
-    form = SearchForm(request.POST or None)
-    if request.method =="POST":
-        if form.is_valid():
-            배 = request.POST.get("배", None)
-    return render(request, 'search.html',{"form":form})
-
-def detail(request):
-    login_session = request.session.get('login_session', '')
-    context = { 'login_session' : login_session }
-    return render(request, 'detail.html', context) 
-    
+# 아래 함수들 다 수정해야함. 목적에 맞게 id를 받는다거나...등등    
 def community(request):
     login_session = request.session.get('login_session', '')
     q = Community.objects.order_by('-id')

@@ -8,17 +8,19 @@
   .gaesi {font-family: 'Poor Story', cursive; font-size:20pt; font-weight: bold;}
   .list-group .list-group-item {background-color: #E8F5FF;}
   .list-group .list-group-item:hover {background-color: #AFDDFA;}
+  body {overflow-x: hidden;}
 </style>
 
+<body>
 <div class="row">
   <div class="col-lg-3">
     <h3 class="my-4 gaesi text-center">게시판</h3>
     <div class="list-group mb-4">
       <!--<a class="list-group-item list-group-item-info text-center font-weight-bold">게시판</a>-->
-      <a href="{% url 'community' %}" class="list-group-item list-group-item-action text-center font-weight-bold">완치 후기</a>
-      <a href="{% url 'comhospital' %}" class="list-group-item list-group-item-action text-center font-weight-bold">병원
+      <a href="{% url 'community' %}" style="font-family: 'Poor Story', cursive; font-size: 15pt;" class="list-group-item list-group-item-action text-center font-weight-bold">완치 후기</a>
+      <a href="{% url 'comhospital' %}" style="font-family: 'Poor Story', cursive; font-size: 15pt;" class="list-group-item list-group-item-action text-center font-weight-bold">병원
         추천</a>
-      <a href="{% url 'qna' %}" class="list-group-item list-group-item-action text-center font-weight-bold">Q & A</a>
+      <a href="{% url 'qna' %}" style="font-family: 'Poor Story', cursive; font-size: 15pt;" class="list-group-item list-group-item-action text-center font-weight-bold">Q & A</a>
     </div>
   </div>
   <!-- /.col-lg-3 -->
@@ -107,5 +109,5 @@
     </div>
   </div>
 </div>
-
+</body>
 {% endblock %}

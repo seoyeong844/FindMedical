@@ -11,8 +11,6 @@ def search(request):
             배 = request.POST.get("배", None)
     return render(request, 'search.html',{"form":form, 'login_session':login_session})
 
-def detail(request):
-    return render(request, 'detail.html') 
 
 
 def result(request):
@@ -38,14 +36,7 @@ def result(request):
         lung = 'lung'
         
         if form.is_valid():
-            #return render(request, 'both.html', {'total':total})
             i = 0
-            # j = 0
-            # for num in (0, len(total)+1):
-            #     for j in (0,len(total[i])+1):
-            #         whole.append(total[i][j])
-            #         j += 1
-            #     i += 1
             while i < len(total):
                 j=0
                 while j < len(total[i]):
@@ -53,18 +44,9 @@ def result(request):
                     j += 1
                 i += 1
             return render(request, 'both.html', {'whole':whole})
-            # if '위암' in whole:
-            #     if '바터팽대부암' in whole:
-            #         return render(request, 'both.html', {'vater':vater, 'stomach':stomach}) #위 바
-            #     else:
-            #         return HttpResponseRedirect(reverse('stomach'))
-            # else:
-            #     return HttpResponseRedirect(reverse('search'))
-
-
     else:
         form = SearchForm()
-        return render(request, 'detail.html', {'login_session':login_session})
+        return render(request, 'search.html', {'login_session':login_session})
 
 def cervical(request):
     login_session = request.session.get('login_session', '')

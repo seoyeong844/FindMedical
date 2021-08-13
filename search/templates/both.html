@@ -1,34 +1,64 @@
 {% extends 'base.html' %}
 {% block content %}
 
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 
 
-<h1>체크한 증상에 따라 발생가능한 암입니다. <br>자세히 보기를 클릭하여 정보를 확인해보세요!</h1><br><br>
-<!-- <h2>{{whole}}</h2>
-{% for any in whole %}
-    <p>{{ forloop.counter }} . {{ any }}</p>
-{% endfor %} -->
+<!-- 부트스트랩 -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+</script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+</script>
+
+<style>
+    .main h2 {font-weight: bold;}
+    * {
+        text-align: center;
+        ;
+    }
+
+    .warning {
+        margin: 50px;
+    }
+        
+
+</style>
+
+
+<div class="main">
+    <!-- 경고창 -->
+    <div class="warning">
+        <h1 style="font-weight: bold; font-size:25pt;"> 체크한 증상에 따라 발생가능한 암입니다.<br><br><strong style="color:#557DE1; font-size:25pt;">자세히 보기</strong>를 클릭하여 정보를 확인해보세요!</h1>
+    </div>
+
+
+</div>
 
 {% if '위암' in whole %}
-    <a href="{% url 'stomach' %}">위암 자세히 보기 <br> </a>
+    <a href="{% url 'stomach' %}" style="font-size: 20pt;">위암 자세히 보기 <br> </a>
 {% endif %}
 {% if '자궁경부암' in whole %}
-    <a href="{% url 'cervical' %}">자궁경부암 자세히 보기 <br> </a>
+    <a href="{% url 'cervical' %}" style="font-size: 20pt;">자궁경부암 자세히 보기 <br> </a>
 {% endif %}
 {% if '갑상선암' in whole %}
-    <a href="{% url 'thyroid' %}">갑상선암 자세히 보기 <br> </a>
+    <a href="{% url 'thyroid' %}" style="font-size: 20pt;">갑상선암 자세히 보기 <br> </a>
 {% endif %}
 {% if '바터팽대부암' in whole %}
-    <a href="{% url 'vater' %}">바터팽대부암 자세히 보기 <br> </a>
+    <a href="{% url 'vater' %}" style="font-size: 20pt;">바터팽대부암 자세히 보기 <br> </a>
 {% endif %}
 {% if '폐암' in whole %}
-    <a href="{% url 'lung' %}">폐암 자세히 보기 <br> </a>
+    <a href="{% url 'lung' %}" style="font-size: 20pt;">폐암 자세히 보기 <br> </a>
 {% endif %}
 {% if '유방암' in whole %}
-    <a href="{% url 'breast' %}">유방암 자세히 보기 <br> </a>
+    <a href="{% url 'breast' %}" style="font-size: 20pt;">유방암 자세히 보기 <br> </a>
 {% endif %}
 {% if '간암' in whole %}
-    <a href="{% url 'liver' %}">간암 자세히 보기 <br> </a>
+    <a href="{% url 'liver' %}" style="font-size: 20pt;">간암 자세히 보기 <br> </a>
 {% endif %}
 
 {% endblock %}
