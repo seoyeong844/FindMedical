@@ -14,7 +14,6 @@
       border-radius: 10px;
     }
   
-  
      /* 100 / 8 = 12.5 */
     @keyframes fade {
       0% {opacity:0;}
@@ -23,9 +22,6 @@
       30% {opacity:0;}
       100% {opacity:0;}
     }
-   .slide .fm {position:absolute; font-size:50pt; color:#A09A9D; }
-
-   .last {position:relative; bottom: 910px;}
 
    .main {text-align: center;}
    .main h5 {font-size:15pt;}
@@ -115,6 +111,69 @@ opacity: 0.8;
 height: 100px;}
 /* 세번째 카드 끝 */
 
+/*네번째 카드 */
+.card .card-header4 {
+-webkit-transition: 0.5s; /*사파리 & 크롬*/
+-moz-transition: 0.5s;  /*파이어폭스*/
+-ms-transition: 0.5s;   /*인터넷 익스플로러*/
+-o-transition: 0.5s;  /*오페라*/
+transition: 0.5s;
+width: 100%;
+height: 250px;
+border-radius: 15px 15px 0 0;
+background-image: url("static/cancer4.jpg");
+background-size: 100% 280px;
+background-repeat: no-repeat;   
+
+}
+
+.card:hover .card-header4 {
+opacity: 0.8;
+height: 100px;}
+/* 네번째 카드 끝 */
+
+/*다섯번째 카드 */
+.card .card-header5 {
+-webkit-transition: 0.5s; /*사파리 & 크롬*/
+-moz-transition: 0.5s;  /*파이어폭스*/
+-ms-transition: 0.5s;   /*인터넷 익스플로러*/
+-o-transition: 0.5s;  /*오페라*/
+transition: 0.5s;
+width: 100%;
+height: 250px;
+border-radius: 15px 15px 0 0;
+background-image: url("static/cancer5.jpg");
+background-size: 100% 280px;
+background-repeat: no-repeat;   
+
+}
+
+.card:hover .card-header5 {
+opacity: 0.8;
+height: 100px;}
+/* 다섯번째 카드 끝 */
+
+/*여섯번째 카드 */
+.card .card-header6 {
+-webkit-transition: 0.5s; /*사파리 & 크롬*/
+-moz-transition: 0.5s;  /*파이어폭스*/
+-ms-transition: 0.5s;   /*인터넷 익스플로러*/
+-o-transition: 0.5s;  /*오페라*/
+transition: 0.5s;
+width: 100%;
+height: 250px;
+border-radius: 15px 15px 0 0;
+background-image: url("static/cancer6.jpeg");
+background-size: 100% 280px;
+background-repeat: no-repeat;   
+
+}
+
+.card:hover .card-header6 {
+opacity: 0.8;
+height: 100px;}
+/* 여섯번째 카드 끝 */
+
 .card-body .card-body-header{
    height: 160px;
 }
@@ -190,6 +249,9 @@ height: 17px;
 #card1 {width: 400px !important; padding-top: 50px; position:relative; top: -2px; left: -50px;}
 #card2 {width: 400px !important; position:relative; top: -481px; left: 350px;}
 #card3 {width: 400px !important; position:relative; top: -960px; left: 750px;}
+#card4 {width: 400px !important; padding-top: 50px; position:relative; top: -1000px; left: -50px;}
+#card5 {width: 400px !important; position:relative; top: -1480px; left: 350px;}
+#card6 {width: 400px !important; position:relative; top: -1960px; left: 750px;}
 
 @keyframes slidy {
 0% { left: 0%; }
@@ -216,15 +278,9 @@ div #slider figure {
   -webkit-animation: 30s slidy ease-in-out infinite;
   animation: 30s slidy ease-in-out infinite; 
 }
-
-
-
 </style>
 
-
-
-
-<div class="home-channel " style="height: 1200px !important;">
+<div class="home-channel " style="height: 1630px !important;">
    <div id="slider">
       <figure>
          <img src="{% static 'fm.jpg' %}" height="523" alt="">
@@ -238,8 +294,6 @@ div #slider figure {
          <img src="{% static 'slide5.jpg' %}" height="523" alt=""></a>
       </figure>
    </div>
-   
-   
    
       <div id="card1">
          <a href="https://jhealthmedia.joins.com/article/article_view.asp?pno=24244">
@@ -319,6 +373,84 @@ div #slider figure {
                   </div>
                </div>
          </div>
+
+         <div id="card4">
+            <a href="http://kormedi.com/1350691/%ED%99%94%EC%9E%A5%EC%8B%A4%EC%97%90%EC%84%9C-%EC%95%8C-%EC%88%98-%EC%9E%88%EB%8A%94%EB%8D%B0-%EB%8C%80%EC%9E%A5%EC%95%94%EC%9D%98-%EC%A6%9D%EC%83%81%EC%9D%80/">
+               <div class="card">
+                  <div class="card-header4" >
+                  </div>
+         
+                  <div class="card-body">
+                     <div class="card-body-header">
+                        <h1>"화장실에서 알 수 있는데.. 대장암의 증상은?"</h1></a><br>
+                        <p class="card-body-hashtag">#대장암 #증상</p>
+                     </div>
+         
+                     <p class="card-body-description">
+                        Q. 대장암이 생기는 원인이 무엇인가요?<br>
+                        A. 가장 큰 영향을 미치는 요인은 음식입니다. 육가공품을 즐기면 대장암 위험이 높아집니다.
+                     </p>
+         
+                     <div class="card-body-footer">
+                        <hr style="margin-bottom: 8px; opacity: 0.5; border-color: #EF5A31">
+                        <i class="icon icon-view_count"></i>[코메디닷컴]
+                        <i class="reg_date"> 2021/08/13 </i>
+                     </div>
+                  </div>
+               </div>
+            </div>
+
+            <div id="card5">
+               <a href="https://news.kbs.co.kr/news/view.do?ncd=5253014&ref=A">
+                  <div class="card">
+                     <div class="card-header5" >
+                     </div>
+            
+                     <div class="card-body">
+                        <div class="card-body-header">
+                           <h1>"코로나19에 감염되면 ‘암 킬러’ 세포 기능 떨어져"</h1></a><br>
+                           <p class="card-body-hashtag">#코로나19 #NK세포</p>
+                        </div>
+            
+                        <p class="card-body-description">
+                           Q. 코로나19가 암에 영향을 미칠까요?<br>
+                           A. 네. 코로나19에 걸리면 바이러스에 감염된 세포를 직접 죽이는 기능이 현저히 떨어지는 것으로 나타났습니다.
+                        </p>
+            
+                        <div class="card-body-footer">
+                           <hr style="margin-bottom: 8px; opacity: 0.5; border-color: #EF5A31">
+                           <i class="icon icon-view_count"></i>[KBS NEWS]
+                           <i class="reg_date"> 2021/08/10 </i>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+
+               <div id="card6">
+                  <a href="https://www.news1.kr/articles/?2518913">
+                     <div class="card">
+                        <div class="card-header6" >
+                        </div>
+               
+                        <div class="card-body">
+                           <div class="card-body-header">
+                              <h1>"숙명여대 학교기업 '숙명아이' 소아암 어린이에 '희망 책가방' 선물"</h1></a><br>
+                              <p class="card-body-hashtag">#숙명여대 #희망 책가방 프로젝트</p>
+                           </div>
+               
+                           <p class="card-body-description">
+                              Q. 희망 책가방이 무엇인가요?<br>
+                              A. 희망 책가방은 환아들이 자신의 꿈이나 추억을 그린 그림을 바탕으로 숙명아이에서 디자인해 제작한 맞춤형 가방입니다.
+                           </p>
+               
+                           <div class="card-body-footer">
+                              <hr style="margin-bottom: 8px; opacity: 0.5; border-color: #EF5A31">
+                              <i class="icon icon-view_count"></i>[news 1 뉴스]
+                              <i class="reg_date"> 2015/12/17 </i>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
    
    
 </div>

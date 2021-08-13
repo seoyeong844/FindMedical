@@ -34,7 +34,7 @@
                     <th scope="col">제목</th>
                     <th scope="col">작성자</th>
                     <th scope="col">작성일</th>
-                    <th scope="col">최종수정일</th>
+                    <th scope="col">조회수</th>
                   </tr>
                 </thead>
           
@@ -45,7 +45,7 @@
                     <td><a href="{% url 'writes' comhospital.id %}">{{ comhospital.title }}</a></td>
                     <td>{{ comhospital.writer }}</td>
                     <td>{{ comhospital.pub_date }}</td>
-                    <td>{{ comhospital.update }}</td>
+                    <td>&nbsp;&nbsp;&nbsp;{{ comhospital.hits }}</td>
                   </tr>
                   {% endfor %}
                 </tbody>

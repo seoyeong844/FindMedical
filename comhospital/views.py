@@ -4,6 +4,7 @@ from .forms import PostForm
 from django.core.paginator import Paginator
 from django.db.models import Q
 from user.models import Users
+from datetime import date, datetime, timedelta
 
 # Create your views here.
 def comhospital(request):
@@ -94,7 +95,22 @@ def writes(request, comhospital_id):
         context['writer'] = True
     else:
         context['writer'] = False 
-    return render(request, 'writes.html', context)
+    response = render(request, 'writes.html', context)
+
+    expire_date, now = datetime.now(), datetime.now()
+    expire_date += timedelta(days=1)
+    expire_date = expire_date.replace(hour=0, minute=0, second=0, microsecond=0)
+    expire_date -= now
+    max_age = expire_date.total_seconds()
+
+    cookie_value = request.COOKIES.get('hitboard2', '_')
+
+    if f'_{comhospital_id}_' not in cookie_value:
+        cookie_value += f'{comhospital_id}_'
+        response.set_cookie('hitboard2', value=cookie_value, max_age=max_age, httponly=True)
+        comhospital_detail.hits += 1
+        comhospital_detail.save()
+    return response
 
 def postsearch(request):
     blogs = ComHospital.objects.all().order_by('-id')

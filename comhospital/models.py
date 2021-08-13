@@ -8,6 +8,7 @@ class ComHospital(models.Model):
     writer = models.ForeignKey(Users, on_delete=models.CASCADE, null=True, verbose_name="작성자")
     title = models.CharField(max_length=200, verbose_name="제목")
     body = models.TextField(verbose_name="내용")
+    hits = models.PositiveIntegerField(default=0, verbose_name='조회수')
     pub_date = models.DateTimeField(auto_now_add=True, null=True, verbose_name="작성일")
     update = models.DateTimeField(auto_now=True, null=True, verbose_name="최종수정일")
 

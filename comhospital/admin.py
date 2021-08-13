@@ -7,7 +7,7 @@ from django_summernote.admin import SummernoteModelAdmin
 @admin.register(ComHospital)
 class ComHospitalAdmin(SummernoteModelAdmin):
     summernote_fields = ('body',)
-    list_display = ('title','writer', 'pub_date', 'update')
+    list_display = ('title','writer', 'hits', 'pub_date', 'update')
     readonly_fields = ['pub_date']
     list_display_links = list_display
 
