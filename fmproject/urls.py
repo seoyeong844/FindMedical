@@ -30,7 +30,6 @@ urlpatterns = [
     path('', home, name="home"),
     path('fmapp/', include('fmapp.urls')),
     path('user/', include('user.urls')),
-    path('accounts/', include('allauth.urls')),
     path('fmapp/writef/<int:community_id>', fmapp.views.writef, name="writef"),
     path('fmapp/new', fmapp.views.new, name='new'),
     path('fmapp/postcreate', fmapp.views.postcreate, name='postcreate'),

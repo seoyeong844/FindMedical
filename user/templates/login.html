@@ -1,9 +1,5 @@
 {% extends 'base.html' %}
 {% block content %}
-<!--
-{% load socialaccount %}
-{% providers_media_js %}
--->
 
 <style>
     .errorlist {list-style: none; color:red; padding-left: 2px; padding-top:15px;}
@@ -37,7 +33,6 @@
     {% endif %}<br>
     <div class="form-actions">
         <button class="btn btn-primary btn-large" type="submit" style="background-color: #99c; font-size:12pt; width:50%;">로그인하기</button><br><br>
-        <!--<a href="{% provider_login_url 'google' %}"><button class="btn btn-primary btn-large" type="button" style="background-color:#CD3861; font-size:12pt; width:50%;">Google 로그인</button></a>-->
     </div>
 </div>
 </form>

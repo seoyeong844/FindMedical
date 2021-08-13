@@ -33,15 +33,6 @@ AUTH_USER_MODEL = 'auth.User'
 LANGUAGE_CODE = 'ko-KR'
 TIME_ZONE = 'Asia/Seoul'
 
-NAVER_CLIENT_ID = 'tTFZXsHn5Kkn7OJGn9hs'
-NAVER_SECRET_KEY = 'vi6WiS0UGu'
-
-AUTHENTICATION_BACKENDS=[
-    'django.contrib.auth.backends.ModelBackend',
-    'allauth.account.auth_backends.AuthenticationBackend',
-]
-SITE_ID=1
-LOGIN_REDIRECT_URL = '/'
 # Application definition
 
 INSTALLED_APPS = [
@@ -58,11 +49,6 @@ INSTALLED_APPS = [
     'qna',
     'search',
     'django_summernote',
-    'django.contrib.sites',
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-    'allauth.socialaccount.providers.google',
 ]
 
 MIDDLEWARE = [
