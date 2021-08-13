@@ -1,0 +1,166 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
+
+<!-- 부트스트랩 -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css">
+
+<style>
+    * {
+        text-align: center;
+        ;
+    }
+
+    .warning {
+        margin: 50px;
+    }
+    .vater-border{
+        border-width: 1px;
+        border-style : solid;
+        border-radius : 20px;
+        border-color: #efefef;
+        padding: 10px;
+    }
+    .vater_info {
+        margin: 40px;
+    }
+
+    .vater_sym {
+        margin: 40px;
+    }
+
+    .vater_rate {
+        margin: 0 auto;
+        width: 30%;
+    }
+
+    .card-border{
+        margin-top: 30px;
+    }
+
+</style>
+
+
+<div class="main">
+    <!-- 경고창 -->
+    <div class="warning">
+        <h1 style="color:#AA3E3E; font-weight: bold;"> 증상 검색결과 </h1><br><h1> 바터팽대부암일 위험이 있습니다.</h1>
+    </div>
+
+    <div class="vater-border">
+        <!-- 정보 -->
+        <div class="vater_info">
+            <h2>바터팽대부암의 정보</h2>
+            <p>바터 팽대부 암은 바터 팽대부에 악성 종양이 생기는 질환을 의미합니다.
+                바터 팽대부는 간에서 만들어진 담즙이 내려가는 담관과 췌장관이 십이지장 벽에서 서로 만나 합쳐져서 공통관을 형성하여 십이지장으로 들어가는 부위를 의미합니다.
+                이 부위는 십이지장 유두라고도 합니다. </p>
+        </div>
+        <!-- 증상 -->
+        <div class="vater_sym">
+            <h2>바터팽대부암의 증상</h2>
+            <p>
+                - 바터 팽대부 암의 가장 흔한 증상은 황달입니다. <br>
+                - 다른 증상으로는 회백색 변, 갈색뇨, 가려움증, 흑색 변 등이 있습니다. <br>
+                - 이외에도 전신 허약감, 식욕 부진, 체중 감소, 우상복부 통증 등의 증상이 나타납니다. <br>
+                - 담즙산이 피부에 축적되면 심한 가려움증이 발생합니다. 다른 모든 암과 마찬가지로 바터 팽대부 암에서도 체중 감소가 나타날 수 있습니다. 6개월 동안 체중이 10% 이상 감소하면 검진을 받아야
+                합니다. <br>
+            </p>
+        </div>
+        <!-- 생존률 -->
+        <div class="vater_rate">
+            <h2>바터팽대부암의 생존률</h2>
+            <div class="chart-div">
+                <canvas id="pieChartCanvas" width="300px" height="300px"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-border">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+            <div id="card1">
+               <a href="http://m.amc.seoul.kr/asan/mobile/healthinfo/disease/diseaseDetail.do?contentId=30479">
+                  <div class="card">
+                     <div class="card-header"></div>
+                     <div class="card-body">
+                        <div class="card-body-header">
+                           <h1>"바터팽부암 질환백과"</h1>
+               </a><br>
+               <p class="card-body-hashtag">#갑상선암 #황달</p>
+            </div>
+            <p class="card-body-description">
+               Q. 언제 바터팽부암을 의심해야 하나요?<br>
+               - 황달이 심하게 나타나면 바터팽부암일 확률이 높습니다.
+            </p>
+            <div class="card-body-footer">
+               <hr style="margin-bottom: 8px; opacity: 0.5; border-color: #EF5A31">
+               <i class="icon icon-view_count"></i>[아산병원]
+               <i class="reg_date"> 2021/08/12 </i>
+            </div>
+         </div>
+          </div>
+          </div>
+          </div>
+        
+          <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+        <div id="card1">
+           <a href="http://www.ikunkang.com/news/articleView.html?idxno=30767">
+              <div class="card">
+                 <div class="card-header"></div>
+                 <div class="card-body">
+                    <div class="card-body-header">
+                       <h1>"바터팽부암 완치후기"</h1>
+           </a><br>
+           <p class="card-body-hashtag">#바터팽부암 #2기</p>
+        </div>
+        <p class="card-body-description">
+           완치한 개인의 후기임으로 정확하지 않습니다.<br>
+           
+        </p>
+        <div class="card-body-footer">
+           <hr style="margin-bottom: 8px; opacity: 0.5; border-color: #EF5A31">
+           <i class="icon icon-view_count"></i>[건강다이제스트]
+           <i class="reg_date"> 2020/02/10 </i>
+        </div>
+         </div>
+        </div>
+        </div>
+        </div>
+    </div>
+
+
+    <!-- 차트 -->
+    <script>
+        window.onload = function () {
+            pieChartDraw();
+        }
+
+        let pieChartData = {
+            labels: ['생존율 40~60%'],
+            datasets: [{
+                data: [60,50],
+                backgroundColor: ['rgb(255, 99, 132)', 'rgb(255, 205, 86)']
+            }]
+        };
+
+        let pieChartDraw = function () {
+            let ctx = document.getElementById('pieChartCanvas').getContext('2d');
+
+            window.pieChart = new Chart(ctx, {
+                type: 'pie',
+                data: pieChartData,
+                options: {
+                    responsive: false
+                }
+            });
+        };
+    </script>
+
+
+</div>
+
+
+{% endblock %}

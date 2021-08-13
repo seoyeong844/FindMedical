@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<style>
+    .mt-2 {position:relative; top:-9px;}
+    #counter {font-family: sans-serif, '맑은 고딕';}
+    .write {position:absolute; float:right; width:15%;}
+    .gaesi {font-family: 'Poor Story', cursive; font-size:20pt; font-weight: bold;}
+    .list-group .list-group-item {background-color: #E8F5FF;}
+    .list-group .list-group-item:hover {background-color: #AFDDFA;}
+    #no1 {font-size: 30pt; color:brown; position:relative; top: -150px; left: 450px;}
+    #no2 {font-size: 13pt; position:relative; top: -120px; left: 450px;}
+    #ss {color:blue;}
+  </style>
+  
+  <div class="row">
+    <div class="col-lg-3">
+      <h3 class="my-4 gaesi text-center">게시판</h3>
+      <div class="list-group mb-4">
+        <!--<a class="list-group-item list-group-item-info text-center font-weight-bold">게시판</a>-->
+        <a href="{% url 'community' %}" class="list-group-item list-group-item-action text-center font-weight-bold">완치 후기</a>
+        <a href="{% url 'comhospital' %}" class="list-group-item list-group-item-action text-center font-weight-bold">병원
+          추천</a>
+        <a href="{% url 'qna' %}" class="list-group-item list-group-item-action text-center font-weight-bold">Q & A</a>
+      </div>
+    </div>
+
+    {% if not blogs %}
+    <h1 id="no1">검색 결과가 없습니다.</h1>
+    <h5 id="no2">검색결과는 <span id="ss">"글 제목과 내용"</span> 기준으로 제공됩니다.</h5>
+    {% else %}
+
+    <div class="col-lg-9 my-4 mb-4"> 
+        <div class="row mt-5">
+            <div class="col-12">
+                <table class="table">
+                    <thead class="thead-white">
+                      <tr>
+                        <th scope="col">순번</th>
+                        <th scope="col">제목</th>
+                        <th scope="col">작성자</th>
+                        <th scope="col">작성일</th>
+                        <th scope="col">최종수정일</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        {% for qna in blogs %}
+                        <tr>
+                            <td id="counter">{{ qna.id }}</td>
+                            <td><a href="{% url 'writef' qna.id %}">{{ qna.title }}</a></td>
+                            <td>{{ qna.writer }}</td>
+                            <td>{{ qna.pub_date }}</td>
+                            <td>{{ qna.update }}</td>
+                          </tr>
+                            {% endfor %}
+                            {% endif %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    
+        <form class="d-flex" action="{% url 'postsearches' %}" method="post">
+            {% csrf_token %}
+            <input class="form-control me-2" style="width:150px; height:35px;" type="search" placeholder="Search" aria-label="Search" name="q" value="{{q}}">
+            <button class="btn btn-outline-secondary" type="submit">Search</button>
+          </form>
+
+      <!--페이지네이션-->
+      <div class="row mt-2">
+        <div class="col-12">
+          <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+              {% if blogs.has_previous %}
+              <li class="page-item">
+                <a class="page-link" href="?page={{ blogs.previous_page_number }}">
+                  <</a>
+              </li>
+              {% else %}
+              <li class="page-item disabled">
+                <a class="page-link" href="?page=1"><</a>
+              </li>
+              {% endif %}
+              <li class="page-item">
+                <a class="page-link" href="#">
+                  {{ blogs.number }} / {{ blogs.paginator.num_pages }}</a>
+              </li>
+              {% if blogs.has_next %}
+              <li class="page-item">
+                <a class="page-link" href="?page={{ blogs.next_page_number }}">></a>
+              </li>
+              {% else %}
+              <li class="page-item disabled">
+                <a class="page-link" href="{{blogs.paginator.num_pages}}">></a>
+              </li>
+              {% endif %}
+            </ul>
+          </nav>
+        </div>
+      </div>
+  
+      <div class="row">
+        <div class="col-12">
+          <a href="{% url 'postcreatet' %}"
+            class="list-group-item list-group-item-info write text-center font-weight-bold">글쓰기</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

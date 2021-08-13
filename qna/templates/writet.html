@@ -1,0 +1,126 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<style>
+    .mt-2 {
+        position: relative;
+        top: -9px;
+    }
+
+    #counter {
+        font-family: sans-serif, '맑은 고딕';
+    }
+
+    .write {
+        position: absolute;
+        float: right;
+        width: 15%;
+    }
+
+    .gaesi {
+        font-family: 'Poor Story', cursive;
+        font-size: 20pt;
+        font-weight: bold;
+    }
+
+    .list-group .list-group-item {
+        background-color: #E8F5FF;
+    }
+
+    .list-group .list-group-item:hover {
+        background-color: #AFDDFA;
+    }
+
+    .area_border{
+        border-width: 1px;
+        border-style : solid;
+        border-radius : 20px;
+        border-color: #a0a0a0;
+        padding: 10px;
+    }
+    .area_title .tit_post {
+        padding: 5px 0 10px;
+        font-weight: normal;
+        font-size: 28px;
+        line-height: 43px;
+        color: #222;
+    }
+
+    .txt_bar {
+        display: inline-block;
+        width: 1px;
+        height: 9px;
+        margin: 0 9px;
+        background-color: #ebebeb;
+    }
+
+    .area_title .info_post,
+    .area_title .info_post a {
+        font-size: 15px;
+        color: #a7a7a7;
+    }
+
+    .area_title .info_post .txt_bar {
+        margin: 0 9px 0 5px;
+    }
+
+    .area_title {
+        margin: 0 0 30px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #a0a0a0;
+    }
+
+    
+</style>
+
+
+
+<div class="row">
+    <div class="col-lg-3">
+        <h3 class="my-4 gaesi text-center">게시판</h3>
+        <div class="list-group mb-4">
+            <!--<a class="list-group-item list-group-item-info text-center font-weight-bold">게시판</a>-->
+            <a href="{% url 'community' %}"
+                class="list-group-item list-group-item-action text-center font-weight-bold">완치 후기</a>
+            <a href="{% url 'comhospital' %}"
+                class="list-group-item list-group-item-action text-center font-weight-bold">병원
+                추천</a>
+            <a href="{% url 'qna' %}" class="list-group-item list-group-item-action text-center font-weight-bold">Q &
+                A</a>
+        </div>
+    </div>
+    <!-- /.col-lg-3 -->
+
+    <div class="col-lg-9 my-4 mb-4 ">
+        <div class="row mt-5 area_border">
+            <div class="area_title">
+                <h3 class="tit_post">{{qna.title}}</h3>
+
+                <span class="info_post">
+                    ...
+                    <span class="txt_bar"></span>
+                    작성자: {{qna.writer}}
+                    <span class="txt_bar"></span>
+                    최종수정일: {{qna.pub_date}}
+                    <span class="txt_bar"></span>
+
+                    {% if writer %}
+                    <a href="{% url 'postupdatet' qna.id %}" style="color:blue;">수정</a>
+                    <span class="txt_bar"></span>
+                    <a href="{% url 'postdeletet' qna.id %}" style="color:crimson;" onclick="return confirm('삭제하시겠습니까?')">삭제</a>
+                    {% endif %}
+                </span>
+            </div>
+
+
+            <div class="area_view">
+                <p>{{ qna.body | safe }}</p>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+
+{% endblock %}

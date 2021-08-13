@@ -1,0 +1,185 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
+
+<!-- 부트스트랩 -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+</script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+</script>
+
+<style>
+    *{
+        text-align: center;;
+    }
+    .warning{
+        margin: 50px;
+    }
+    .thyroid-border{
+        border-width: 1px;
+        border-style : solid;
+        border-radius : 20px;
+        border-color: #efefef;
+        padding: 10px;
+    }
+    .thyroid_info{
+        margin:40px;
+    }
+    .thyroid_sym{
+        margin: 40px;
+    }
+    .thyroid_rate{
+        margin: 0 auto;
+        width: 60%;
+    }
+
+    .thyroid_danger{
+        margin: 40px;
+    }
+    .thyroid_prevent{
+        margin: 40px;
+    }
+    .card-border{
+        margin-top: 30px;
+    }
+</style>
+
+
+<div class="main">
+    <!-- 경고창 -->
+    <div class="warning">
+        <h1 style="color:#AA3E3E; font-weight: bold;"> 증상 검색결과 </h1><br><h1> 갑상선암일 위험이 있습니다.</h1>
+    </div>
+
+    <div class="thyroid-border">
+        <!-- 정보 -->
+        <div class="thyroid_info">
+            <h2>갑상선 암의 정보</h2>
+            <p>갑상선에 혹이 생긴 것을 갑상선 결절이라 하며 전체 갑상선 결절의 5-10%은 갑상선암으로 진단됩니다.
+                갑상선암은 양성 결절과 다르게 일반적으로 크기가 커지며 주변조직을 침범하거나 림프절 전이, 원격 전이를 일으킬 수 있습니다.
+                갑상선암의 95% 이상은 유두암이며 이외에도 여포암, 저분화암, 미분화암, 수질암 등이 있습니다.</p>
+        </div>
+        <!-- 증상 -->
+        <div class="thyroid_sym">
+            <h2>갑상선 암의 증상</h2>
+            <p>
+                - 목의 앞부분에 결절(혹)이 크거나 최근에 갑자기 커진 경우 <br>
+                - 결절이 커서 기도나 식도를 눌러 호흡곤란 증상이나 음식물을 삼키기 힘든 증상이 있을 때 <br>
+                - 갑상선에 덩어리가 있으면서 목소리 변화가 있을 때 <br>
+                - 결절이 주위 조직과 붙어 있어 잘 움직이지 않을 때 <br>
+                - 결절이 매우 딱딱하게 만져질 때 <br>
+                - 결절과 같은 쪽의 림프절이 만져질 때 <br>
+            </p>
+        </div>
+        <!-- 생존률 -->
+        <div class="thyroid_rate">
+            <h2>갑상선 암의 생존율</h2>
+            <div class="container ">
+                <canvas id="myChart"></canvas>
+            </div>
+        </div>
+        <div class="thyroid_danger">
+            <h2>위험도</h2>
+            <p>
+                가장 잘 알려진 위험요인은 목 주변에 방사선 치료를 받은 경우이며 방사선 누출 사고에 의해서도 갑상선암 발병위험도가 증가합니다.
+                또한 방사선에 노출된 나이가 어릴수록 노출 정도에 비례해 발병 위험도가 증가합니다.
+                일부 갑상선암은 가족력이 있는 경우 발생이 증가하는 양상을 보이며, 최근 보고에 따르면 비만 또한 갑상선암의 발생을 증가시킨다고 보고되었습니다.
+            </p>
+        </div>
+    </div>
+
+    <div class="card-border">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+            <div id="card1">
+               <a href="http://www.amc.seoul.kr/asan/healthinfo/disease/diseaseDetail.do?contentId=31594">
+                  <div class="card">
+                     <div class="card-header"></div>
+                     <div class="card-body">
+                        <div class="card-body-header">
+                           <h1>"갑상선암 질환백과"</h1>
+               </a><br>
+               <p class="card-body-hashtag">#갑상선암 #목</p>
+            </div>
+            <p class="card-body-description">
+               Q. 언제 갑상선암을 의심해야 하나요?<br>
+               - 목에 눈에 띄게 큰 혹이 생겼을 때입니다.
+            </p>
+            <div class="card-body-footer">
+               <hr style="margin-bottom: 8px; opacity: 0.5; border-color: #EF5A31">
+               <i class="icon icon-view_count"></i>[아산병원]
+               <i class="reg_date"> 2021/08/12 </i>
+            </div>
+         </div>
+          </div>
+          </div>
+          </div>
+        
+          <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+        <div id="card1">
+           <a href="https://seoul.hyumc.com/seoul/healthInfo/healthLife.do?action=view&bbsId=healthLife&nttSeq=10918">
+              <div class="card">
+                 <div class="card-header"></div>
+                 <div class="card-body">
+                    <div class="card-body-header">
+                       <h1>"갑상선암 어떻게 치료하나요?"</h1>
+           </a><br>
+           <p class="card-body-hashtag">#갑상선암 #목</p>
+        </div>
+        <p class="card-body-description">
+           Q. 갑상선암 어떻게 치료하나요?<br>
+           - 전절제술의 경우 방사선 요오드 치료를 시행합니다.
+        </p>
+        <div class="card-body-footer">
+           <hr style="margin-bottom: 8px; opacity: 0.5; border-color: #EF5A31">
+           <i class="icon icon-view_count"></i>[헬스라이프]
+           <i class="reg_date"> 2018/09/04 </i>
+        </div>
+         </div>
+        </div>
+        </div>
+        </div>
+    </div>
+
+    
+
+
+
+    <!-- 차트 -->
+    <script>
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var chart = new Chart(ctx, { // 챠트 종류를 선택 
+            type: 'line', // 챠트를 그릴 데이타 
+            data: {
+                labels: ['1993~1995', '1996~2000', '2001~2005', '2006~2010', '2014~2018'],
+                
+                datasets: [{
+                    label: '남성의 갑상선암 생존율 (%)',
+                    backgroundColor: 'transparent',
+                    borderColor: 'blue',
+                    data: [87.8, 89.7, 96.0, 100.2, 100.4]
+                },
+                {
+                    label: '여성의 갑상선암 생존율 (%)',
+                    backgroundColor: 'transparent',
+                    borderColor: 'red',
+                    data: [95.7, 96.0, 98.7, 99.9, 99.9]
+                }]
+            },
+            // 옵션 
+            options: {}
+        }
+        );
+    </script>
+
+
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<style>
+    #d_title {
+        font-size: 30pt;
+        color: #557DE1;
+    }
+
+    #fm {
+        font-size: 35pt;
+        color: #99c;
+    }
+
+    .circle {
+        width: 150px;
+        height: 150px;
+        border-radius: 60%;
+        overflow: hidden;
+    }
+
+    .profile {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .name {
+        position: relative;
+        top: 7px;
+        left: 20px;
+    }
+
+    .sns1 {
+        position: relative;
+        left: -5px;
+    }
+</style>
+
+<h2 id="d_title">Who developed <strong id="fm">FM</strong>?</h2>
+<hr><br>
+
+<div class="col-lg-4 col-md-6 col-sm-12">
+    <div class="circle">
+        <img src="{% static 'seokyeong.jpg' %}" alt="서경" height="150" width="150">
+    </div>
+
+    <div class="name">
+        <h1>Seo-kyeong</h1>
+    </div>
+
+    <div class="sns1">
+        <a href="https://github.com/Seokyeong237"><img src="{% static 'github.png' %}" width="50px" height="50px"></a>
+        <a href="https://www.instagram.com/s_eo_32.065/"><img src="{% static 'instagram.png' %}" width="45px"
+                height="45px"></a>
+        <a href=""><img src="{% static 'blog.jpeg' %}" width="60px" height="64px"></a>
+    </div>
+</div>
+
+<div class="col-lg-4 col-md-6 col-sm-12"> 
+    <div class="circle">
+        <img src="{% static 'hyunju.jpg' %}" alt="현주" height="150" width="150">
+    </div>
+
+    <div class="name">
+        <h1>Hyun-Ju</h1>
+    </div>
+
+    <div class="sns1">
+        <a href="https://github.com/hellozo0"><img src="{% static 'github.png' %}" width="50px" height="50px"></a>
+        <a href="https://www.instagram.com/hello_zo0/"><img src="{% static 'instagram.png' %}" width="45px"
+                height="45px"></a>
+        <a href="https://hellozo0.tistory.com"><img src="{% static 'blog.jpeg' %}" width="60px" height="64px"></a>
+    </div>
+</div>
+
+
+
+<!-- 사진은 정사각형으로 해야지 사진이 안 망가짐 -->
+
+
+<!-- 연우사진 & SNS 주소 추가하기 --> 
+<div class="col-lg-4 col-md-6 col-sm-12"> 
+    <div class="circle">
+        <img src="{% static 'woo.jpg' %}" alt="연우" height="150" width="150">
+    </div>
+
+    <div class="name">
+        <h1> Yeon-Woo</h1>  
+    </div>
+
+    <div class="sns1">
+        <a href="https://github.com/kariel1103"><img src="{% static 'github.png' %}" width="50px" height="50px"></a>
+        <a href="https://www.instagram.com//"><img src="{% static 'instagram.png' %}" width="45px"
+                height="45px"></a>
+        <a href=""><img src="{% static 'blog.jpeg' %}" width="60px" height="64px"></a>
+    </div>
+</div>
+
+
+<!-- 서영사진 & SNS 주소 추가하기 -->
+<div class="col-lg-4 col-md-6 col-sm-12"> 
+    <div class="circle">
+        <img src="{% static 'seoyeong.jpg' %}" alt="서영" height="150" width="150">
+    </div>
+
+    <div class="name">
+        <h1>서영</h1>
+    </div>
+
+    <div class="sns1">
+        <a href="https://github.com/seoyeong844/"><img src="{% static 'github.png' %}" width="50px" height="50px"></a>
+        <a href="https://www.instagram.com/_ssseo0_2/"><img src="{% static 'instagram.png' %}" width="45px"
+                height="45px"></a>
+        <a href=""><img src="{% static 'blog.jpeg' %}" width="60px" height="64px"></a>
+    </div>
+</div>
+
+
+{% endblock %}

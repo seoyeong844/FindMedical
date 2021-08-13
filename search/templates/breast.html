@@ -1,0 +1,179 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
+
+<!-- 부트스트랩 -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+</script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+</script>
+
+<style>
+    * {
+        text-align: center;
+        ;
+    }
+
+    .warning {
+        margin: 50px;
+    }
+    .sto-border{
+        border-width: 1px;
+        border-style : solid;
+        border-radius : 20px;
+        border-color: #efefef;
+        padding: 10px;
+    }
+    .sto_info {
+        margin: 40px;
+    }
+
+    .sto_sym {
+        margin: 40px;
+    }
+
+    .sto_rate {
+        margin: 0 auto;
+        width: 50%;
+    }
+
+    .card-border{
+        margin-top: 30px;
+    }
+
+</style>
+
+
+<div class="main">
+    <!-- 경고창 -->
+    <div class="warning">
+        <h1 style="color:#AA3E3E; font-weight: bold;"> 증상 검색결과</h1><br> <h1>유방암일 위험이 있습니다.</h1>
+    </div>
+
+    <div class="sto-border">
+        <!-- 정보 -->
+        <div class="sto_info">
+            <h2>유방암의 정보</h2>
+            <p>유방암이란 유방 밖으로 퍼져서 생명을 위협할 수 있는 악성 종양입니다. <br>
+            발생 부위에 따라 유관과 소엽(小葉) 같은 실질(實質)조직에 생기는 암과 그 외의 간질(間質)조직에 생기는 암으로 나뉘며, <br>
+            유관과 소엽의 암은 암세포가 주위 조직으로 퍼진 정도에 따라 다시 침윤성 유방암과 비침윤성 유방암으로 나뉩니다. <br>
+            남성의 유방암은 여성 유방암의 1% 이하로, 침윤성 유관암이 가장 많이 발견됩니다.
+            </p>
+        </div>
+        <!-- 증상 -->
+        <div class="sto_sym">
+            <h2>유방암의 증상</h2>
+            <p>
+               초기에는 아무런 증상이 없으며 유방의 통증은 초기 유방암의 일반적인 증상은 아닙니다. <br>
+               가장 흔한 증상은 통증 없이 고정된 멍울이나 유방의 비대가 느껴지는 것으로 50%가 유방의 상부 외측에 위치하며 그밖에 <br>
+               자연적으로 나오며 혈액성 또는 맑은 장액성의 유두분비물, 유방의 비대칭성, 유두함몰이나 낙설, 오렌지껍질 같은 피부 등이 발견될 수 있습니다.
+            </p>
+        </div>
+        <!-- 생존률 -->
+        <div class="sto_rate">
+            <h2>유방암의 생존율</h2>
+            <div class="container ">
+                <canvas id="myChart"></canvas>
+            </div>
+        </div>
+
+        <div class="sto-danger">
+            <br><h2>유방암의 위험 요인</h2>
+            <p>유방암의 원인으로는 유전과 여성호르몬(에스트로겐), 방사선 노출과 음식물 특히 고지방식, 알코올 섭취, 흡연, <br>
+            환경 호르몬 등이 고려되고 있습니다. 그 외 한쪽 유방에 암이 있었던 사람, 대장암이나 난소암이 있었던 사람, 상체 비만이 있는 사람에서 <br>
+            유방암의 발생 가능성이 높다고 합니다. 그러나 대부분의 유방암 환자들에서는 특별한 원인을 찾을 수 없는 경우가 많습니다.</p>
+        </div>
+    </div>
+
+    <div class="card-border">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+            <div id="card1">
+               <a href="http://www.samsunghospital.com/home/healthInfo/content/contenView.do?CONT_SRC=CMS&CONT_SRC_ID=09a4727a8000f3a3&CONT_CLS_CD=001020001010&CONT_ID=2372">
+                  <div class="card">
+                     <div class="card-header"></div>
+                     <div class="card-body">
+                        <div class="card-body-header">
+                           <h1>"유방암 질환백과"</h1>
+               </a><br>
+               <p class="card-body-hashtag">#유방암 #증가율1위</p>
+            </div>
+            <p class="card-body-description">
+               Q. 어린 나이에도 유방암이 걸릴 수 있나요? <br>
+               - 우리나라의 경우에는 서양보다 젊은 유방암 환자의 빈도가 높습니다. 
+            </p>
+            <div class="card-body-footer">
+               <hr style="margin-bottom: 8px; opacity: 0.5; border-color: #EF5A31">
+               <i class="icon icon-view_count"></i>[삼성서울병원]
+               <i class="reg_date"> 2021/02/18 </i>
+            </div>
+         </div>
+          </div>
+          </div>
+          </div>
+        
+          <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+        <div id="card1">
+           <a href="https://m.health.chosun.com/svc/news_view.html?contid=2021080501731">
+              <div class="card">
+                 <div class="card-header"></div>
+                 <div class="card-body">
+                    <div class="card-body-header">
+                       <h1>"유방암 자가진단방법"</h1>
+           </a><br>
+           <p class="card-body-hashtag">#유방암 #경각심필요</p>
+        </div>
+        <p class="card-body-description">
+            우리나라 유방암 증가율은 무려 90.7%로 세계 1위의 증가 속도를 보이고 있습니다. 자가진단을 통해 유방암을 예방할 수 있습니다.
+        </p>
+        <div class="card-body-footer">
+           <hr style="margin-bottom: 8px; opacity: 0.5; border-color: #EF5A31">
+           <i class="icon icon-view_count"></i>[삼성서울병원 건강이야기]
+           <i class="reg_date"> 2015/04/22 </i>
+        </div>
+         </div>
+        </div>
+        </div>
+        </div>
+    </div>
+
+
+    <!-- 차트 -->
+    <script>
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var chart = new Chart(ctx, { // 챠트 종류를 선택 
+            type: 'line', // 챠트를 그릴 데이타 
+            data: {
+                labels: ['1993~1995', '1996~2000', '2001~2005', '2006~2010', '2014~2018'],
+                
+                datasets: [{
+                    label: '남성의 유방암 생존율 (%)',
+                    backgroundColor: 'transparent',
+                    borderColor: 'blue',
+                    data: [77.1, 84.3, 87.5, 89.9, 91.9]
+                },
+                {
+                    label: '여성의 유방암 생존율 (%)',
+                    backgroundColor: 'transparent',
+                    borderColor: 'red',
+                    data: [79.3, 83.6, 88.7, 91.2, 93.3]
+                }]
+            },
+            // 옵션 
+            options: {}
+        }
+        );
+    </script>
+
+
+
+</div>
+
+
+{% endblock %}

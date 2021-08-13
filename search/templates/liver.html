@@ -1,0 +1,182 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
+
+<!-- 부트스트랩 -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+</script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+</script>
+
+<style>
+    * {
+        text-align: center;
+        ;
+    }
+
+    .warning {
+        margin: 50px;
+    }
+    .sto-border{
+        border-width: 1px;
+        border-style : solid;
+        border-radius : 20px;
+        border-color: #efefef;
+        padding: 10px;
+    }
+    .sto_info {
+        margin: 40px;
+    }
+
+    .sto_sym {
+        margin: 40px;
+    }
+
+    .sto_rate {
+        margin: 0 auto;
+        width: 50%;
+    }
+
+    .card-border{
+        margin-top: 30px;
+    }
+
+</style>
+
+
+<div class="main">
+    <!-- 경고창 -->
+    <div class="warning">
+        <h1 style="color:#AA3E3E; font-weight: bold;"> 증상 검색결과</h1> <br> <h1>간암일 위험이 있습니다.</h1>
+    </div>
+
+    <div class="sto-border">
+        <!-- 정보 -->
+        <div class="sto_info">
+            <h2>간암의 정보</h2>
+            <p>간암은 간에서 일차적으로 발생한, 즉 원발성의 악성 종양을 의미합니다. <br>
+            일반인들은 다른 기관에서 간으로 전이된 암도 흔히 간암이라고 부르지만, 엄밀하게는 원발성의 암만을 가리킵니다. <br>
+            병리학적(조직적)으로 원발성 간암에는 간세포암종과 담관상피암종, 간모세포종, 혈관육종 등 다양한 종류가 있으며, <br>
+            이중 간세포암종과 담관상피암종이 대부분을 차지합니다.
+            </p>
+        </div>
+        <!-- 증상 -->
+        <div class="sto_sym">
+            <h2>간암의 증상</h2>
+            <p>
+               간암의 증상은 오른쪽 윗배에 통증이 있거나 덩어리가 만져지는 것, 복부 팽만감, 체중 감소, 심한 피로감, 소화불량 등입니다. <br>
+               간경변증 환자에게 간암이 발생하면 갑자기 황달이나 복수가 심해지기도 합니다. 이러한 증상들은 대부분 암이 많이 진행된 뒤에 나타나는데, <br>
+               증상이 전혀 없든지 모호하게만 비치는 상태에서 건강검진을 받다가 암이 발견되는 경우도 있습니다.
+            </p>
+        </div>
+        <!-- 생존률 -->
+        <div class="sto_rate">
+            <h2>간암의 생존율</h2>
+            <div class="container ">
+                <canvas id="myChart"></canvas>
+            </div>
+        </div>
+
+        <div class="sto-danger">
+            <br><h2>간암의 위험 요인</h2>
+            <p>간암은 발생과 관련된 위험인자가 다른 암들보다 잘 알려져 있습니다. <br>
+            만성 B형 또는 C형 간염,(모든 원인의) 간경변증, 알코올성 간질환, 비만이나 당뇨와 관련된 지방성 간질환, <br>
+            그리고 아프리카 등지에서는 특정 곰팡이류가 만들어내는 발암물질 아플라톡신 B(aflatoxin B) 따위가 간암의 위험을 증가시킵니다. <br>
+            2014년 대한간암학회에서 발표된 자료에 따르면 간암 환자의 72%가 B형 간염바이러스(HBV, hepatitis B virus), <br>
+            12%가 C형 간염바이러스(HCV, hepatitis C virus)의 영향을 받았으며, 9%가 알코올, 4%가 기타 원인과 연관이 있었습니다.
+            </p>
+        </div>
+    </div>
+
+    <div class="card-border">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+            <div id="card1">
+               <a href="https://www.koreansso.org/general/general01_2">
+                  <div class="card">
+                     <div class="card-header"></div>
+                     <div class="card-body">
+                        <div class="card-body-header">
+                           <h1>"간암 질환백과"</h1>
+               </a><br>
+               <p class="card-body-hashtag">#간암 #침묵의 장기</p>
+            </div>
+            <p class="card-body-description">
+               Q. 간암 발견을 위해서는 어떤 검진을 하나요? <br>
+               - 간 초음파검사 및 간암 표지자 측정을 시행합니다.
+            </p>
+            <div class="card-body-footer">
+               <hr style="margin-bottom: 8px; opacity: 0.5; border-color: #EF5A31">
+               <i class="icon icon-view_count"></i>[대한종양외과학회]
+               <i class="reg_date"> 2021/07/13 </i>
+            </div>
+         </div>
+          </div>
+          </div>
+          </div>
+        
+          <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+        <div id="card1">
+           <a href="https://m.health.chosun.com/svc/news_view.html?contid=2020111800950">
+              <div class="card">
+                 <div class="card-header"></div>
+                 <div class="card-body">
+                    <div class="card-body-header">
+                       <h1>"간암을 예방하려면"</h1>
+           </a><br>
+           <p class="card-body-hashtag">#간암 #간질환</p>
+        </div>
+        <p class="card-body-description">
+            <br>간암을 예방하려면 만성 간질환을 예방하는 게 우선이다.
+        </p>
+        <div class="card-body-footer">
+           <hr style="margin-bottom: 8px; opacity: 0.5; border-color: #EF5A31">
+           <i class="icon icon-view_count"></i>[서치클리닉]
+           <i class="reg_date"> 2020/11/18 </i>
+        </div>
+         </div>
+        </div>
+        </div>
+        </div>
+    </div>
+
+
+    <!-- 차트 -->
+    <script>
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var chart = new Chart(ctx, { // 챠트 종류를 선택 
+            type: 'line', // 챠트를 그릴 데이타 
+            data: {
+                labels: ['1993~1995', '1996~2000', '2001~2005', '2006~2010', '2014~2018'],
+                
+                datasets: [{
+                    label: '남성의 간암 생존율 (%)',
+                    backgroundColor: 'transparent',
+                    borderColor: 'blue',
+                    data: [10.8, 13.8, 20.4, 28.2, 37.8]
+                },
+                {
+                    label: '여성의 간암 생존율 (%)',
+                    backgroundColor: 'transparent',
+                    borderColor: 'red',
+                    data: [15.0, 15.1, 20.9, 28.3, 34.7]
+                }]
+            },
+            // 옵션 
+            options: {}
+        }
+        );
+    </script>
+
+
+
+</div>
+
+
+{% endblock %}

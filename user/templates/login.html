@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block content %}
+<!--
+{% load socialaccount %}
+{% providers_media_js %}
+-->
+
+<style>
+    .panel {
+      width: 500px;
+      height: 350px;
+    }
+
+    .panel .panel-body {
+      font-size: 13pt;
+    }
+</style>
+<div class="panel panel-default registration text-center">
+    <div class="panel-heading">
+        <h1>Login!</h1>
+    </div>
+    <div class="panel-body">
+    <form method="POST" action="{% url 'login' %}">
+        {% csrf_token %}
+        {% for form in forms %}<br>
+        <div>
+        <label for="{{ form.id_for_label }}">{{ form.label }}</label>
+        {{ form }}
+        </div>
+    {% endfor %}
+    </div>
+    
+    {% if error %}
+    {{ error }}
+    {% endif %}<br>
+    <div class="form-actions">
+        <button class="btn btn-primary btn-large" type="submit" style="background-color: #99c; font-size:12pt; width:50%;">로그인하기</button><br><br>
+        <!--<a href="{% provider_login_url 'google' %}"><button class="btn btn-primary btn-large" type="button" style="background-color:#CD3861; font-size:12pt; width:50%;">Google 로그인</button></a>-->
+    </div>
+</div>
+</form>
+{% endblock %}

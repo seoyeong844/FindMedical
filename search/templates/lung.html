@@ -1,0 +1,181 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
+
+<!-- 부트스트랩 -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+</script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+</script>
+
+<style>
+    * {
+        text-align: center;
+        ;
+    }
+
+    .warning {
+        margin: 50px;
+    }
+    .sto-border{
+        border-width: 1px;
+        border-style : solid;
+        border-radius : 20px;
+        border-color: #efefef;
+        padding: 10px;
+    }
+    .sto_info {
+        margin: 40px;
+    }
+
+    .sto_sym {
+        margin: 40px;
+    }
+
+    .sto_rate {
+        margin: 0 auto;
+        width: 50%;
+    }
+
+    .card-border{
+        margin-top: 30px;
+    }
+
+</style>
+
+
+<div class="main">
+    <!-- 경고창 -->
+    <div class="warning">
+        <h1 style="color:#AA3E3E; font-weight: bold;"> 증상 검색결과</h1> <br><h1> 폐암일 위험이 있습니다.</h1>
+    </div>
+
+    <div class="sto-border">
+        <!-- 정보 -->
+        <div class="sto_info">
+            <h2>폐암의 정보</h2>
+            <p>폐암이란 폐에 생긴 악성 종양을 말하며, 폐 자체에서 발생하거나(원발성 폐암) 
+            다른 장기에서 생긴 암이 폐로 전이되어(예: 유방암의 폐전이)<br> 발생하기도 합니다. 
+            원발성 폐암의 종류는 암세포의 크기와 형태를 기준으로 비소세포폐암과 소세포폐암으로 구분합니다. <br>
+            폐암 가운데 80~85%는 비소세포폐암인데, 이것은 다시 선암(샘암), 편평상피세포암, 대세포암 등으로 나뉩니다. 
+            소세포폐암은 전반적으로 악성도가 높아서, 발견 당시에 이미 림프관 또는 혈관을 통하여 다른 장기나 반대편 폐, 
+            종격동(양쪽 폐 사이의 공간으로 심장, 기관, 식도, 대동맥 등이 위치함)으로 전이되어 있는 경우가 많습니다. </p>
+        </div>
+        <!-- 증상 -->
+        <div class="sto_sym">
+            <h2>폐암의 증상</h2>
+            <p>
+               폐암 초기에는 전혀 증상이 없으며, 어느 정도 진행된 후에도 일반 감기와 비슷하게 기침이나 객담(가래) 같은 증상만 나타나는 경우가 많습니다.<br>
+               보다 구체적인 증상으로는 피 섞인 가래나 객혈, 호흡곤란, 흉부 통증, 쉰 목소리, 상대정맥증후군(신체 상반부 정맥들의 피를 모아 심장으로 보내는 <br>상대정맥이 막혀서 생기는 여러 증상), 뼈의 통증과 골절, 두통, 오심, 구토가 있습니다.
+            </p>
+        </div>
+        <!-- 생존률 -->
+        <div class="sto_rate">
+            <h2>폐암의 생존율</h2>
+            <div class="container ">
+                <canvas id="myChart"></canvas>
+            </div>
+        </div>
+
+        <div class="sto-danger">
+            <br><h2>폐암의 위험 요인</h2>
+            <p>폐암의 가장 중요한 발병 요인은 흡연입니다. 여기에는 간접흡연까지 포함됩니다. 
+            이 같은 생활 요인 외에도 석면, 비소, 크롬 따위 유독성 물질에의 <br>장기적 노출(직업적 요인), 우리 주변을 떠도는 
+            벤조피렌을 비롯한 발암물질과 우라늄, 라돈 같은 방사성물질의 영향(환경적 요인), <br>
+            그리고 가족의 병력(유전적 요인) 등 여러 요소가 복합적으로 관여하여 발생합니다.</p>
+            </div>
+    </div>
+
+    <div class="card-border">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+            <div id="card1">
+               <a href="http://www.amc.seoul.kr/asan/healthinfo/disease/diseaseDetail.do?contentId=30468">
+                  <div class="card">
+                     <div class="card-header"></div>
+                     <div class="card-body">
+                        <div class="card-body-header">
+                           <h1>"폐암 질환백과"</h1>
+               </a><br>
+               <p class="card-body-hashtag">#폐암 #조기발견</p>
+            </div>
+            <p class="card-body-description">
+               Q. 폐암의 증상이 느껴지면 치료가 가능한가요? <br>
+               - 초기가 아니라면 항암치료를 해야합니다.  
+            </p>
+            <div class="card-body-footer">
+               <hr style="margin-bottom: 8px; opacity: 0.5; border-color: #EF5A31">
+               <i class="icon icon-view_count"></i>[아산병원]
+               <i class="reg_date"> 2020/11/30 </i>
+            </div>
+         </div>
+          </div>
+          </div>
+          </div>
+        
+          <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+        <div id="card1">
+           <a href="https://m.health.chosun.com/svc/news_view.html?contid=2021080501731">
+              <div class="card">
+                 <div class="card-header"></div>
+                 <div class="card-body">
+                    <div class="card-body-header">
+                       <h1>"폐암 징후 및 위험요인"</h1>
+           </a><br>
+           <p class="card-body-hashtag">#폐암 #흡연이가장큰요인</p>
+        </div>
+        <p class="card-body-description">
+            -폐암, 흡연이 주원인, 발병위험 13배 높인다<br>
+           
+        </p>
+        <div class="card-body-footer">
+           <hr style="margin-bottom: 8px; opacity: 0.5; border-color: #EF5A31">
+           <i class="icon icon-view_count"></i>[서치클리닉]
+           <i class="reg_date"> 2018/06/21 </i>
+        </div>
+         </div>
+        </div>
+        </div>
+        </div>
+    </div>
+
+
+    <!-- 차트 -->
+    <script>
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var chart = new Chart(ctx, { // 챠트 종류를 선택 
+            type: 'line', // 챠트를 그릴 데이타 
+            data: {
+                labels: ['1993~1995', '1996~2000', '2001~2005', '2006~2010', '2014~2018'],
+                
+                datasets: [{
+                    label: '남성의 폐암 생존율 (%)',
+                    backgroundColor: 'transparent',
+                    borderColor: 'blue',
+                    data: [11.6, 12.4, 15.3, 18.0, 27.0]
+                },
+                {
+                    label: '여성의 폐암 생존율 (%)',
+                    backgroundColor: 'transparent',
+                    borderColor: 'red',
+                    data: [15.8, 17.5, 20.2, 26.0, 44.3]
+                }]
+            },
+            // 옵션 
+            options: {}
+        }
+        );
+    </script>
+
+
+
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<style>
+  footer{width:114.11%; position: relative; left: -80px;}
+  .mt-2 {position:relative; top:-9px;}
+  #counter {font-family: sans-serif, '맑은 고딕';}
+  .write {position:absolute; float:right; width:15%;}
+  .gaesi {font-family: 'Poor Story', cursive; font-size:20pt; font-weight: bold;}
+  .list-group .list-group-item {background-color: #E8F5FF;}
+  .list-group .list-group-item:hover {background-color: #AFDDFA;}
+</style>
+
+<div class="row">
+ <div class="col-lg-3">
+   <h3 class="my-4 gaesi text-center">게시판</h3>
+   <div class="list-group mb-4">
+     <!--<a class="list-group-item list-group-item-info text-center font-weight-bold">게시판</a>-->
+     <a href="{% url 'community' %}" class="list-group-item list-group-item-info list-group-item-action text-center font-weight-bold">완치 후기</a>
+     <a href="{% url 'comhospital' %}" class="list-group-item list-group-item-action text-center font-weight-bold">병원
+       추천</a>
+     <a href="{% url 'qna' %}" class="list-group-item list-group-item-action text-center font-weight-bold">Q & A</a>
+   </div>
+ </div>
+   <!-- /.col-lg-3 -->
+
+   <div class="col-lg-9 my-4 mb-4">
+       <div class="row mt-5">
+           <div class="col-12">
+             <table class="table">
+               <thead class="thead-white">
+                 <tr>
+                   <th scope="col">순번</th>
+                   <th scope="col">제목</th>
+                   <th scope="col">작성자</th>
+                   <th scope="col">작성일</th>
+                   <th scope="col">최종수정일</th>
+                 </tr>
+               </thead>
+         
+               <tbody>
+                 {% for qna in posts %}
+                 <tr>
+                   <td id="counter">{{ qna.id }}</td>
+                   <td><a href="{% url 'writet' qna.id %}">{{ qna.title }}</a></td>
+                   <td>{{ qna.writer }}</td>
+                   <td>{{ qna.pub_date }}</td>
+                   <td>{{ qna.update }}</td>
+                 </tr>
+                 {% endfor %}
+               </tbody>
+             </table>
+           </div>
+         </div>
+
+         <form class="d-flex" action="{% url 'postsearches' %}" method="post">
+          {% csrf_token %}
+          <input class="form-control me-2" style="width:150px; height:35px;" type="search" placeholder="Search" aria-label="Search" name="q" value="{{q}}">
+          <button class="btn btn-outline-secondary" type="submit">검색</button>
+        </form>
+    
+         <div class="row mt-2">
+           <div class="col-12">
+             <nav aria-label="Page navigation example">
+               <ul class="pagination justify-content-center">
+                 {% if posts.has_previous %}
+                 <li class="page-item">
+                   <a class="page-link" href="?page={{ posts.previous_page_number }}">
+                     <</a>
+                 </li>
+                 {% else %}
+                 <li class="page-item disabled">
+                   <a class="page-link" href="?page=1"><</a>
+                 </li>
+                 {% endif %}
+                 <li class="page-item">
+                   <a class="page-link" href="#">
+                     {{ posts.number }} / {{ posts.paginator.num_pages }}</a>
+                 </li>
+                 {% if posts.has_next %}
+                 <li class="page-item">
+                   <a class="page-link" href="?page={{ posts.next_page_number }}">></a>
+                 </li>
+                 {% else %}
+                 <li class="page-item disabled">
+                   <a class="page-link" href="{{posts.paginator.num_pages}}">></a>
+                 </li>
+                 {% endif %}
+               </ul>
+             </nav>
+           </div>
+         </div>
+
+         <div class="row">
+           <div class="col-12">
+            {% if login_session %}
+           
+            <a href="{% url 'postcreatet' %}"
+              class="list-group-item list-group-item-info write text-center font-weight-bold">글쓰기</a>
+              {% else %}
+              <a href="{% url 'login' %}" onclick="return alert('로그인을 하셔야 글 작성이 가능합니다.')"
+              class="list-group-item list-group-item-info write text-center font-weight-bold">글쓰기</a>
+            {% endif %}
+           </div>
+         </div>
+</div>
+
+{% endblock %}

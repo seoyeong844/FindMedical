@@ -1,0 +1,179 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
+
+<!-- 부트스트랩 -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+</script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+</script>
+
+<style>
+    * {
+        text-align: center;
+        ;
+    }
+
+    .warning {
+        margin: 50px;
+    }
+    .sto-border{
+        border-width: 1px;
+        border-style : solid;
+        border-radius : 20px;
+        border-color: #efefef;
+        padding: 10px;
+    }
+    .sto_info {
+        margin: 40px;
+    }
+
+    .sto_sym {
+        margin: 40px;
+    }
+
+    .sto_rate {
+        margin: 0 auto;
+        width: 50%;
+    }
+
+    .card-border{
+        margin-top: 30px;
+    }
+
+</style>
+
+
+<div class="main">
+    <!-- 경고창 -->
+    <div class="warning">
+        <h1 style="color:#AA3E3E; font-weight: bold;"> 증상 검색결과</h1><br> <h1>위암일 위험이 있습니다.</h1>
+    </div>
+
+    <div class="sto-border">
+        <!-- 정보 -->
+        <div class="sto_info">
+            <h2>위암의 정보</h2>
+            <p>위암이란 원칙적으로 위에 생기는 모든 암을 일컫는 말이지만, 주로 위점막의 선세포(샘세포)에서 발생한 위선암을 말합니다. 
+                위선암은 현미경에서 관찰되는 암세포의 모양에 따라 다시 여러 종류로 분류됩니다. 
+                위선암 외에도 위에는 드물게 림프조직에서 발생하는 림프종, 위의 간질세포에서 발생하는 간질성 종양, 비상피성 세포에서 유래하는 악성 종양인 육종, 그리고 호르몬을 분비하는 신경내분비암 등이 발생하기도 합니다. </p>
+        </div>
+        <!-- 증상 -->
+        <div class="sto_sym">
+            <h2>위암의 증상</h2>
+            <p>
+                위암은 초기엔 특별한 증상이 없으며 약간의 불편함을 느껴도 다른 일반적 위장 질환과 구분하기가 어려워서 암이 어느 정도 진행된 뒤에야 진단되는 경우가 많음.<br>
+                - 조기 위암 : 무증상(약 80%), 속쓰림(약 10%) <br>
+                - 진행성 위암 : 체중감소(약 60%), 복통(약 50%) , 오심, 구토(약 30%), 식욕 감퇴(약 30%), 연하 곤란(약 25%), 위장관 출혈(약 20%) <br>
+            </p>
+        </div>
+        <!-- 생존률 -->
+        <div class="sto_rate">
+            <h2>위암의 생존율</h2>
+            <div class="container ">
+                <canvas id="myChart"></canvas>
+            </div>
+        </div>
+
+        <div class="sto-danger">
+            <h2>위암의 위험 요인</h2>
+            <p>위암은 어느 하나의 원인에 의해 발생하기 보다 여러 요인들이 복합적으로 작용하여 발생합니다. 
+                환경 요인으로는 식이 요인(짠 음식, 탄 음식, 훈제 음식), 흡연, 음주, 전리방사선 등이 있고, 개체 요인으로는 특정 유전적 소인이 있습니다. 
+                그리고 위암의 전구병변으로서 헬리코박터 파일로리균 감염, 만성 위축성위염, 장상피화생, 위수술 과거력 등이 있습니다. 
+                또한 위암 가족력이 있는 경우 그렇지 않은 사람에 비해 위암의 발생 위험이 증가합니다.</p>
+        </div>
+    </div>
+
+    <div class="card-border">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+            <div id="card1">
+               <a href="http://www.samsunghospital.com/home/healthInfo/content/contenView.do?CONT_SRC=CMS&CONT_SRC_ID=09a4727a8002b66e&CONT_CLS_CD=001020001012&CONT_ID=1105">
+                  <div class="card">
+                     <div class="card-header"></div>
+                     <div class="card-body">
+                        <div class="card-body-header">
+                           <h1>"위암 질환백과"</h1>
+               </a><br>
+               <p class="card-body-hashtag">#위암 #두번째로흔한암</p>
+            </div>
+            <p class="card-body-description">
+               Q. 위암 4기라고 진단 받았는데 수술이 가능한가요? <br>
+               - 위암 4기는 원격전이가 있는 경우이므로 수술의 적응증에 해당하지 않으며 항암화학요법이 추천됩니다
+            </p>
+            <div class="card-body-footer">
+               <hr style="margin-bottom: 8px; opacity: 0.5; border-color: #EF5A31">
+               <i class="icon icon-view_count"></i>[삼성서울병원]
+               <i class="reg_date"> 2014/07/07 </i>
+            </div>
+         </div>
+          </div>
+          </div>
+          </div>
+        
+          <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+        <div id="card1">
+           <a href="https://www.korea.kr/news/policyNewsView.do?newsId=148851744">
+              <div class="card">
+                 <div class="card-header"></div>
+                 <div class="card-body">
+                    <div class="card-body-header">
+                       <h1>"위암 징후 및 위험요인"</h1>
+           </a><br>
+           <p class="card-body-hashtag">#위암 #위험요인</p>
+        </div>
+        <p class="card-body-description">
+            조기 위암, 대부분 건강검진 통해 발견<br>
+           
+        </p>
+        <div class="card-body-footer">
+           <hr style="margin-bottom: 8px; opacity: 0.5; border-color: #EF5A31">
+           <i class="icon icon-view_count"></i>[정책브리핑]
+           <i class="reg_date"> 2018/06/21 </i>
+        </div>
+         </div>
+        </div>
+        </div>
+        </div>
+    </div>
+
+
+    <!-- 차트 -->
+    <script>
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var chart = new Chart(ctx, { // 챠트 종류를 선택 
+            type: 'line', // 챠트를 그릴 데이타 
+            data: {
+                labels: ['1993~1995', '1996~2000', '2001~2005', '2006~2010', '2014~2018'],
+                
+                datasets: [{
+                    label: '남성의 위암 생존율 (%)',
+                    backgroundColor: 'transparent',
+                    borderColor: 'blue',
+                    data: [43.9,47.6,58.7,69.1,77.8]
+                },
+                {
+                    label: '여성의 위암 생존율 (%)',
+                    backgroundColor: 'transparent',
+                    borderColor: 'red',
+                    data: [43.7, 46.8, 56.6, 67.0, 75.2]
+                }]
+            },
+            // 옵션 
+            options: {}
+        }
+        );
+    </script>
+
+
+
+</div>
+
+
+{% endblock %}

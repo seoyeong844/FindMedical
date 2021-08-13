@@ -1,0 +1,326 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
+<style>
+
+    ul,li{list-style:none;}
+    .slide{position:relative;left:-77px;top:-17px;height:200px;width:2000px;overflow:hidden;}
+    .slide ul{position:relative;height:100%;}
+    .slide li{position:absolute;left:0;right:0;top:0;bottom:0;opacity:0;animation:fade 25s infinite;width:1300px;}
+    .slide li:nth-child(1){background:#EEE6F4;animation-delay:0s}
+    .slide li:nth-child(2){background:#D7DAE2;animation-delay:8s}
+    img{
+      border-radius: 10px;
+    }
+  
+  
+     /* 100 / 8 = 12.5 */
+    @keyframes fade {
+      0% {opacity:0;}
+      5% {opacity:1;}
+      25% {opacity:1;}
+      30% {opacity:0;}
+      100% {opacity:0;}
+    }
+   .slide .fm {position:absolute; font-size:50pt; color:#A09A9D; }
+
+   .last {position:relative; bottom: 910px;}
+
+   .main {text-align: center;}
+   .main h5 {font-size:15pt;}
+
+html, body, div, span, h1, h2, h3, h4, h5, h6,
+p, pre, a,
+dfn, em, img, ins, kbd, q, s, samp, small, strike, sub, sup, tt, var, u,
+i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table,
+details, embed, figure, figcaption, header, hgroup, menu, nav,
+output, ruby, section, summary, time, mark {
+margin: 0;
+padding: 0;
+border: 0;
+vertical-align: baseline;
+}
+
+.card {
+height: 450px;
+width: 350px;
+border-radius: 15px;
+display: inline;
+margin-top: 30px;
+margin-left: 30px;
+margin-bottom: 30px;
+margin-right: 30px;
+position: relative;
+box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+overflow: hidden;
+}
+
+.card .card-header {
+-webkit-transition: 0.5s; /*사파리 & 크롬*/
+-moz-transition: 0.5s;  /*파이어폭스*/
+-ms-transition: 0.5s;   /*인터넷 익스플로러*/
+-o-transition: 0.5s;  /*오페라*/
+transition: 0.5s;
+width: 100%;
+height: 250px;
+border-radius: 15px 15px 0 0;
+background-image: url("static/cancer1.jpg");
+background-size: 100% 280px;
+background-repeat: no-repeat;   
+}
+
+.card:hover .card-header  {
+opacity: 0.8;
+height: 100px;}
+
+/*두번째 카드 */
+.card .card-header2 {
+-webkit-transition: 0.5s; /*사파리 & 크롬*/
+-moz-transition: 0.5s;  /*파이어폭스*/
+-ms-transition: 0.5s;   /*인터넷 익스플로러*/
+-o-transition: 0.5s;  /*오페라*/
+transition: 0.5s;
+width: 100%;
+height: 250px;
+border-radius: 15px 15px 0 0;
+background-image: url("static/cancer2.jpg");
+background-size: 100% 280px;
+background-repeat: no-repeat;   
+}
+
+.card:hover .card-header2  {
+opacity: 0.8;
+height: 100px;}
+/* 두번째 카드 끝 */
+
+/*세번째 카드 */
+.card .card-header3 {
+-webkit-transition: 0.5s; /*사파리 & 크롬*/
+-moz-transition: 0.5s;  /*파이어폭스*/
+-ms-transition: 0.5s;   /*인터넷 익스플로러*/
+-o-transition: 0.5s;  /*오페라*/
+transition: 0.5s;
+width: 100%;
+height: 250px;
+border-radius: 15px 15px 0 0;
+background-image: url("static/cancer3.jpg");
+background-size: 100% 280px;
+background-repeat: no-repeat;   
+
+}
+
+.card:hover .card-header3 {
+opacity: 0.8;
+height: 100px;}
+/* 세번째 카드 끝 */
+
+.card-body .card-body-header{
+   height: 160px;
+}
+.card-body-header h1 {
+font-size: 20px;
+font-weight: bold;
+}
+
+.card-body-header {
+line-height: 20px;
+margin: 10px 20px 0px 20px;
+}
+
+.card-body-description  {
+opacity: 0;
+color: #757B82;
+line-height: 20px;
+-webkit-transition: .2s ease-in-out; /*사파리&크롬*/
+-moz-transition: .2s ease-in-out; /*파이어폭스*/
+-ms-transition: .2s ease-in-out; /*익스플로러*/
+-o-transition: .2s ease-in-out; /*오페라*/
+transition : .2s ease-in-out;
+overflow: hidden;
+height: 80px;
+margin: 5px 20px;
+}
+
+.card:hover .card-body-description {
+opacity: 1;
+-webkit-transition: .5s ease-in-out;
+-moz-transition: .5s ease-in-out;
+-ms-transition: .5s ease-in-out;
+-o-transition: .5s ease-in-out;
+transition : .5s ease-in-out;
+overflow: auto;
+}
+
+.card-body-hashtag {
+color: #000;
+font-style: italic;
+}
+
+.card-body-footer {
+position: absolute; 
+margin-top: 15px;
+margin-bottom: 6px;
+bottom: 0; 
+width: 314px;
+font-size: 14px;
+color: #9FA5A8;
+padding: 0 15px;
+}
+
+.icon {
+display: inline;
+vertical-align: middle;
+margin-right: 2px;
+}
+
+.icon-view_count {
+width: 25px;
+height: 17px;
+}
+
+.icon-comments_count {
+margin-left: 5px;
+width: 25px;
+height: 17px;   
+}
+
+.reg_date {float: right;}
+
+#card1 {width: 400px !important; padding-top: 50px; position:relative; top: -2px; left: -50px;}
+#card2 {width: 400px !important; position:relative; top: -481px; left: 350px;}
+#card3 {width: 400px !important; position:relative; top: -960px; left: 750px;}
+
+@keyframes slidy {
+0% { left: 0%; }
+20% { left: 0%; }
+25% { left: -100%; }
+45% { left: -100%; }
+50% { left: -200%; }
+70% { left: -200%; }
+75% { left: -300%; }
+95% { left: -300%; }
+100% { left: -400%; }
+}
+ 
+div #slider { overflow: hidden; }
+div #slider figure img { width: 20%; float: left; }
+div #slider figure { 
+  position: relative;
+  width: 500%;
+  margin: 0;
+  top:0;
+  left: 0;
+  text-align: left;
+  font-size: 0;
+  -webkit-animation: 30s slidy ease-in-out infinite;
+  animation: 30s slidy ease-in-out infinite; 
+}
+
+
+
+</style>
+
+
+
+
+<div class="home-channel " style="height: 1200px !important;">
+   <div id="slider">
+      <figure>
+         <img src="{% static 'fm.jpg' %}" height="523" alt="">
+      <a href="https://ko.wikipedia.org/wiki/%EC%84%B8%EA%B3%84_%EC%95%94%EC%9D%98_%EB%82%A0">
+         <img src="{% static 'slide1.jpg' %}" height="523" alt=""></a>
+      <a href="https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=ok_hira&logNo=220305120554">
+         <img src="{% static 'slider3.png' %}" height="523" alt=""></a>
+      <a href="https://www.drh.co.kr/new/front/index.php?g_page=community&m_page=community04&page=1&bb_code=606p0hp0g89c27f&view=read&wd=7">
+         <img src="{% static 'slide4.jpg' %}" height="523" alt=""></a>
+      <a href="https://m.yna.co.kr/view/AKR20210422131100508">
+         <img src="{% static 'slide5.jpg' %}" height="523" alt=""></a>
+      </figure>
+   </div>
+   
+   
+   
+      <div id="card1">
+         <a href="https://jhealthmedia.joins.com/article/article_view.asp?pno=24244">
+         <div class="card">
+            <div class="card-header" >
+            </div>
+      
+            <div class="card-body">
+               <div class="card-body-header">
+                  <h1>"통증 없어도 멍울 잡히면 유방암 의심하세요"</h1></a>
+                  <br>
+                  <p class="card-body-hashtag">#유방암 #멍울</p>
+               </div>
+      
+               <p class="card-body-description">
+                  Q. 언제 유방암을 의심해야 하나요?<br>
+                  A. 아프지는 않는데 멍울이 만져졌을 때입니다.
+               </p>
+      
+               <div class="card-body-footer">
+                  <hr style="margin-bottom: 8px; opacity: 0.5; border-color: #EF5A31">
+                  <i class="icon icon-view_count"></i>[중앙일보헬스미디어]
+                  <i class="reg_date"> 2021/08/11 </i>
+               </div>
+            </div>
+         </div>
+      </div>
+      
+         <div id="card2">
+         <a href="http://news.kmib.co.kr/article/view.asp?arcid=0013877479&code=61121111&cp=nv">
+            <div class="card">
+               <div class="card-header2" >
+               </div>
+      
+               <div class="card-body">
+                  <div class="card-body-header">
+                     <h1>"바터팽대부암 환자 로봇 휘플수술 성공"</h1></a><br>
+                     <p class="card-body-hashtag">#희귀암 #인천 최초</p>
+                  </div>
+      
+                  <p class="card-body-description">
+                     Q. 바터팽대부암이 무엇인가요?<br>
+                     A. 쓸개즙을 십이지장으로 보내는 출구(바터팽대부) 부분에 생기는 암입니다.
+                  </p>
+      
+                  <div class="card-body-footer">
+                     <hr style="margin-bottom: 8px; opacity: 0.5; border-color: #EF5A31">
+                     <i class="icon icon-view_count"></i>[국민일보]
+                     <i class="reg_date"> 2019/10/30 </i>
+                  </div>
+               </div>
+            </div>
+         </div>
+      
+         <div id="card3">
+            <a href="http://www.mdtoday.co.kr/mdtoday/index.html?no=427090">
+               <div class="card">
+                  <div class="card-header3" >
+                  </div>
+      
+                  <div class="card-body">
+                     <div class="card-body-header">
+                        <h1>"나이 들수록 중요성 커지는 암 검진"</h1></a><br><br>
+                        <p class="card-body-hashtag">#조기진단 #조기발견</p>
+                     </div>
+      
+                     <p class="card-body-description">
+                        Q. 암 검진을 꼭 받아야 할까요?<br>
+                        A. 네. 미리 암 검진을 통해 건강관리를 시작하는 것이 중요합니다.
+                     </p>
+      
+                     <div class="card-body-footer">
+                        <hr style="margin-bottom: 8px; opacity: 0.5; border-color: #EF5A31">
+                        <i class="icon icon-view_count"></i>[메디컬투데이]
+                        <i class="reg_date"> 2021/08/10 </i>
+                     </div>
+                  </div>
+               </div>
+         </div>
+   
+   
+</div>
+
+{% endblock %}

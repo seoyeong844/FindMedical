@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<style>
+    .panel {
+      width: 500px;
+      height: 500px;
+    }
+
+    .panel .panel-body {
+      font-size: 13pt;
+    }
+
+    footer{width:114.11%; position: relative; left: -80px;}
+</style>
+
+<div class="panel panel-default registration text-center">
+    <div class="panel-heading ">
+        <h1>Sign up!</h1>
+    </div>
+    <div class="panel-body">
+    <form method="POST" action="">
+        {% csrf_token %}
+        {% for form in forms %}<br>
+        <div>
+            <label for="{{ form.id_for_label }}">{{ form.label }}</label>
+            {{ form }}
+        </div>
+    {% endfor %}
+
+    {% if error %}
+    {{ error }}
+    {% endif %}<br>
+    <div class="form-actions">
+        <button class="btn btn-primary btn-large" type="submit"
+            style="background-color: #99c; font-size:12pt; width:50%;">가입하기</button>
+    </div>
+    </form>
+</div>
+{% endblock %}
