@@ -6,6 +6,8 @@
 -->
 
 <style>
+    .errorlist {list-style: none; color:red; padding-left: 2px; padding-top:15px;}
+
     .panel {
       width: 500px;
       height: 350px;
@@ -17,7 +19,7 @@
 </style>
 <div class="panel panel-default registration text-center">
     <div class="panel-heading">
-        <h1>Login!</h1>
+        <h1 style="color:#6991E1; font-weight: bold; font-size: 27pt;">Login With FM!</h1>
     </div>
     <div class="panel-body">
     <form method="POST" action="{% url 'login' %}">
@@ -29,7 +31,7 @@
         </div>
     {% endfor %}
     </div>
-    
+   
     {% if error %}
     {{ error }}
     {% endif %}<br>

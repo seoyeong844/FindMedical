@@ -22,7 +22,7 @@ class RegisterForm(forms.ModelForm):
         widget=forms.PasswordInput(
             attrs={
                 'class' : 'user-pw',
-                'placeholder' : '비밀번호'
+                'placeholder' : '*최소 8자리 이상*'
             }
         ),
         error_messages={'required' : '비밀번호를 입력해주세요.'}
@@ -149,6 +149,6 @@ class LoginForm(forms.Form):
             try:
                 PasswordHasher().verify(user.user_pw, user_pw)
             except exceptions.VerifyMismatchError:
-                return self.add_error('user_pw', '비밀번호가 다릅니다.')
+                return self.add_error('user_pw', '잘못된 비밀번호입니다.')
             
             self.login_session = user.user_id

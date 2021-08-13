@@ -4,6 +4,7 @@ from .forms import PostForm
 from django.db.models import Q
 from django.core.paginator import Paginator
 from user.models import Users
+from datetime import date, datetime, timedelta
 
 # Create your views here.
 def qna(request):
@@ -88,13 +89,31 @@ def postdeletet(request, qna_id):
 def writet(request, qna_id):
     login_session = request.session.get('login_session', '')
     context = { 'login_session' : login_session }
+
     qna_detail = get_object_or_404(Qna, pk=qna_id)
     context['qna'] = qna_detail
+
     if qna_detail.writer.user_id == login_session:
         context['writer'] = True
     else:
         context['writer'] = False 
-    return render(request, 'writet.html', context)
+    
+    response = render(request, 'writet.html', context)
+
+    expire_date, now = datetime.now(), datetime.now()
+    expire_date += timedelta(days=1)
+    expire_date = expire_date.replace(hour=0, minute=0, second=0, microsecond=0)
+    expire_date -= now
+    max_age = expire_date.total_seconds()
+
+    cookie_value = request.COOKIES.get('hitboard3', '_')
+
+    if f'_{qna_id}_' not in cookie_value:
+        cookie_value += f'{qna_id}_'
+        response.set_cookie('hitboard3', value=cookie_value, max_age=max_age, httponly=True)
+        qna_detail.hits += 1
+        qna_detail.save()
+    return response
 
 def postsearches(request):
     blogs = Qna.objects.all().order_by('-id')

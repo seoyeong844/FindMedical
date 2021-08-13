@@ -34,7 +34,7 @@
                    <th scope="col">제목</th>
                    <th scope="col">작성자</th>
                    <th scope="col">작성일</th>
-                   <th scope="col">최종수정일</th>
+                   <th scope="col">조회수</th>
                  </tr>
                </thead>
          
@@ -45,7 +45,7 @@
                    <td><a href="{% url 'writet' qna.id %}">{{ qna.title }}</a></td>
                    <td>{{ qna.writer }}</td>
                    <td>{{ qna.pub_date }}</td>
-                   <td>{{ qna.update }}</td>
+                   <td>&nbsp;&nbsp;&nbsp;{{ qna.hits }}</td>
                  </tr>
                  {% endfor %}
                </tbody>
